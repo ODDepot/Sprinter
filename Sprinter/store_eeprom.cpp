@@ -92,65 +92,65 @@ void EEPROM_printSettings()
   #ifdef PRINT_EEPROM_SETTING
       showString(PSTR("Steps per unit:\r\n"));
       showString(PSTR(" M92 X"));
-      Serial.print(axis_steps_per_unit[0]);
+      Serial1.print(axis_steps_per_unit[0]);
       showString(PSTR(" Y"));
-      Serial.print(axis_steps_per_unit[1]);
+      Serial1.print(axis_steps_per_unit[1]);
       showString(PSTR(" Z"));
-      Serial.print(axis_steps_per_unit[2]);
+      Serial1.print(axis_steps_per_unit[2]);
       showString(PSTR(" E"));
-      Serial.println(axis_steps_per_unit[3]);
+      Serial1.println(axis_steps_per_unit[3]);
       
       showString(PSTR("Maximum feedrates (mm/s):\r\n"));
       showString(PSTR("  M202 X"));
-      Serial.print(max_feedrate[0]);
+      Serial1.print(max_feedrate[0]);
       showString(PSTR(" Y"));
-      Serial.print(max_feedrate[1]); 
+      Serial1.print(max_feedrate[1]); 
       showString(PSTR(" Z"));
-      Serial.print(max_feedrate[2]); 
+      Serial1.print(max_feedrate[2]); 
       showString(PSTR(" E"));
-      Serial.println(max_feedrate[3]);
+      Serial1.println(max_feedrate[3]);
 
       showString(PSTR("Maximum Acceleration (mm/s2):\r\n"));
       showString(PSTR("  M201 X"));
-      Serial.print(max_acceleration_units_per_sq_second[0] ); 
+      Serial1.print(max_acceleration_units_per_sq_second[0] ); 
       showString(PSTR(" Y"));
-      Serial.print(max_acceleration_units_per_sq_second[1] ); 
+      Serial1.print(max_acceleration_units_per_sq_second[1] ); 
       showString(PSTR(" Z"));
-      Serial.print(max_acceleration_units_per_sq_second[2] );
+      Serial1.print(max_acceleration_units_per_sq_second[2] );
       showString(PSTR(" E"));
-      Serial.println(max_acceleration_units_per_sq_second[3]);
+      Serial1.println(max_acceleration_units_per_sq_second[3]);
 
       showString(PSTR("Acceleration: S=acceleration, T=retract acceleration\r\n"));
       showString(PSTR("  M204 S"));
-      Serial.print(move_acceleration ); 
+      Serial1.print(move_acceleration ); 
       showString(PSTR(" T"));
-      Serial.println(retract_acceleration);
+      Serial1.println(retract_acceleration);
 
       showString(PSTR("Advanced variables (mm/s): S=Min feedrate, T=Min travel feedrate, X=max xY jerk,  Z=max Z jerk, E=max E jerk\r\n"));
 
       showString(PSTR("  M205 S"));
-      Serial.print(minimumfeedrate ); 
+      Serial1.print(minimumfeedrate ); 
       showString(PSTR(" T" ));
-      Serial.print(mintravelfeedrate ); 
+      Serial1.print(mintravelfeedrate ); 
 //      showString(PSTR(" B"));
-//      Serial.print(min_seg_time ); 
+//      Serial1.print(min_seg_time ); 
       showString(PSTR(" X"));
-      Serial.print(max_xy_jerk ); 
+      Serial1.print(max_xy_jerk ); 
       showString(PSTR(" Z"));
-      Serial.print(max_z_jerk);
+      Serial1.print(max_z_jerk);
       showString(PSTR(" E"));
-      Serial.println(max_e_jerk);
+      Serial1.println(max_e_jerk);
 
       
     #ifdef PIDTEMP
     
       showString(PSTR("PID settings:\r\n"));
       showString(PSTR("  M301 P"));
-      Serial.print(PID_Kp); 
+      Serial1.print(PID_Kp); 
       showString(PSTR(" I"));
-      Serial.print(PID_Ki); 
+      Serial1.print(PID_Ki); 
       showString(PSTR(" D"));
-      Serial.println(PID_Kd);
+      Serial1.println(PID_Kd);
     
     #endif
   #endif

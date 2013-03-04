@@ -59,7 +59,7 @@ static int FreeRam(void) {
  * \param[in] str Pointer to string stored in flash memory.
  */
 static NOINLINE void SerialPrint_P(PGM_P str) {
-  for (uint8_t c; (c = pgm_read_byte(str)); str++) Serial.print(char(c));
+  for (uint8_t c; (c = pgm_read_byte(str)); str++) Serial1.print(char(c));
 }
 //------------------------------------------------------------------------------
 /**
@@ -69,6 +69,6 @@ static NOINLINE void SerialPrint_P(PGM_P str) {
  */
 static NOINLINE void SerialPrintln_P(PGM_P str) {
   SerialPrint_P(str);
-  Serial.println();
+  Serial1.println();
 }
 #endif  // #define SdFatUtil_h

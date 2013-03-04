@@ -408,45 +408,45 @@ void PID_autotune(int PIDAT_test_temp)
             if(PIDAT_bias > (HEATER_CURRENT/2)) PIDAT_d = (HEATER_CURRENT - 1) - PIDAT_bias;
             else PIDAT_d = PIDAT_bias;
 
-            showString(PSTR(" bias: ")); Serial.print(PIDAT_bias);
-            showString(PSTR(" d: "));    Serial.print(PIDAT_d);
-            showString(PSTR(" min: "));  Serial.print(PIDAT_min);
-            showString(PSTR(" max: "));  Serial.println(PIDAT_max);
+            showString(PSTR(" bias: ")); Serial1.print(PIDAT_bias);
+            showString(PSTR(" d: "));    Serial1.print(PIDAT_d);
+            showString(PSTR(" min: "));  Serial1.print(PIDAT_min);
+            showString(PSTR(" max: "));  Serial1.println(PIDAT_max);
             
             if(PIDAT_cycles > 2) 
             {
               PIDAT_Ku = (4.0*PIDAT_d)/(3.14159*(PIDAT_max-PIDAT_min));
               PIDAT_Tu = ((float)(PIDAT_t_low + PIDAT_t_high)/1000.0);
               
-              showString(PSTR(" Ku: ")); Serial.print(PIDAT_Ku);
-              showString(PSTR(" Tu: ")); Serial.println(PIDAT_Tu);
+              showString(PSTR(" Ku: ")); Serial1.print(PIDAT_Ku);
+              showString(PSTR(" Tu: ")); Serial1.println(PIDAT_Tu);
 
               PIDAT_Kp = 0.60*PIDAT_Ku;
               PIDAT_Ki = 2*PIDAT_Kp/PIDAT_Tu;
               PIDAT_Kd = PIDAT_Kp*PIDAT_Tu/8;
               showString(PSTR(" Clasic PID \r\n"));
-              //showString(PSTR(" Kp: ")); Serial.println(PIDAT_Kp);
-              //showString(PSTR(" Ki: ")); Serial.println(PIDAT_Ki);
-              //showString(PSTR(" Kd: ")); Serial.println(PIDAT_Kd);
-              showString(PSTR(" CFG Kp: ")); Serial.println((unsigned int)(PIDAT_Kp*256));
-              showString(PSTR(" CFG Ki: ")); Serial.println((unsigned int)(PIDAT_Ki*PIDAT_TIME_FACTOR));
-              showString(PSTR(" CFG Kd: ")); Serial.println((unsigned int)(PIDAT_Kd*PIDAT_TIME_FACTOR));
+              //showString(PSTR(" Kp: ")); Serial1.println(PIDAT_Kp);
+              //showString(PSTR(" Ki: ")); Serial1.println(PIDAT_Ki);
+              //showString(PSTR(" Kd: ")); Serial1.println(PIDAT_Kd);
+              showString(PSTR(" CFG Kp: ")); Serial1.println((unsigned int)(PIDAT_Kp*256));
+              showString(PSTR(" CFG Ki: ")); Serial1.println((unsigned int)(PIDAT_Ki*PIDAT_TIME_FACTOR));
+              showString(PSTR(" CFG Kd: ")); Serial1.println((unsigned int)(PIDAT_Kd*PIDAT_TIME_FACTOR));
               
               PIDAT_Kp = 0.30*PIDAT_Ku;
               PIDAT_Ki = PIDAT_Kp/PIDAT_Tu;
               PIDAT_Kd = PIDAT_Kp*PIDAT_Tu/3;
               showString(PSTR(" Some overshoot \r\n"));
-              showString(PSTR(" CFG Kp: ")); Serial.println((unsigned int)(PIDAT_Kp*256));
-              showString(PSTR(" CFG Ki: ")); Serial.println((unsigned int)(PIDAT_Ki*PIDAT_TIME_FACTOR));
-              showString(PSTR(" CFG Kd: ")); Serial.println((unsigned int)(PIDAT_Kd*PIDAT_TIME_FACTOR));
+              showString(PSTR(" CFG Kp: ")); Serial1.println((unsigned int)(PIDAT_Kp*256));
+              showString(PSTR(" CFG Ki: ")); Serial1.println((unsigned int)(PIDAT_Ki*PIDAT_TIME_FACTOR));
+              showString(PSTR(" CFG Kd: ")); Serial1.println((unsigned int)(PIDAT_Kd*PIDAT_TIME_FACTOR));
               /*
               PIDAT_Kp = 0.20*PIDAT_Ku;
               PIDAT_Ki = 2*PIDAT_Kp/PIDAT_Tu;
               PIDAT_Kd = PIDAT_Kp*PIDAT_Tu/3;
               showString(PSTR(" No overshoot \r\n"));
-              showString(PSTR(" CFG Kp: ")); Serial.println((unsigned int)(PIDAT_Kp*256));
-              showString(PSTR(" CFG Ki: ")); Serial.println((unsigned int)(PIDAT_Ki*PIDAT_TIME_FACTOR));
-              showString(PSTR(" CFG Kd: ")); Serial.println((unsigned int)(PIDAT_Kd*PIDAT_TIME_FACTOR));
+              showString(PSTR(" CFG Kp: ")); Serial1.println((unsigned int)(PIDAT_Kp*256));
+              showString(PSTR(" CFG Ki: ")); Serial1.println((unsigned int)(PIDAT_Ki*PIDAT_TIME_FACTOR));
+              showString(PSTR(" CFG Kd: ")); Serial1.println((unsigned int)(PIDAT_Kd*PIDAT_TIME_FACTOR));
               */
             }
           }
@@ -477,9 +477,9 @@ void PID_autotune(int PIDAT_test_temp)
     {
       PIDAT_temp_millis = millis();
       showString(PSTR("ok T:"));
-      Serial.print(PIDAT_input);   
+      Serial1.print(PIDAT_input);   
       showString(PSTR(" @:"));
-      Serial.println((unsigned char)PIDAT_PWM_val*1);       
+      Serial1.println((unsigned char)PIDAT_PWM_val*1);       
     }
     
     if(((millis() - PIDAT_t1) + (millis() - PIDAT_t2)) > (10L*60L*1000L*2L)) 
@@ -518,24 +518,24 @@ void PID_autotune(int PIDAT_test_temp)
     if(manage_monitor <= 1)
     {
       showString(PSTR("MTEMP:"));
-      Serial.print(millis());
+      Serial1.print(millis());
       if(manage_monitor<1)
       {
         showString(PSTR(" "));
-        Serial.print(analog2temp(current_raw));
+        Serial1.print(analog2temp(current_raw));
         showString(PSTR(" "));
-        Serial.print(target_temp);
+        Serial1.print(target_temp);
         showString(PSTR(" "));
         #ifdef PIDTEMP
-        Serial.println(heater_duty);
+        Serial1.println(heater_duty);
         #else 
           #if (HEATER_0_PIN > -1)
           if(READ(HEATER_0_PIN))
-            Serial.println(255);
+            Serial1.println(255);
           else
-            Serial.println(0);
+            Serial1.println(0);
           #else
-          Serial.println(0);
+          Serial1.println(0);
           #endif
         #endif
       }
@@ -543,17 +543,17 @@ void PID_autotune(int PIDAT_test_temp)
       else
       {
         showString(PSTR(" "));
-        Serial.print(analog2tempBed(current_bed_raw));
+        Serial1.print(analog2tempBed(current_bed_raw));
         showString(PSTR(" "));
-        Serial.print(analog2tempBed(target_bed_raw));
+        Serial1.print(analog2tempBed(target_bed_raw));
         showString(PSTR(" "));
         #if (HEATER_1_PIN > -1)
           if(READ(HEATER_1_PIN))
-            Serial.println(255);
+            Serial1.println(255);
           else
-            Serial.println(0);
+            Serial1.println(0);
         #else
-          Serial.println(0);
+          Serial1.println(0);
         #endif  
       }
       #endif
